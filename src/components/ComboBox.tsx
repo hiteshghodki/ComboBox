@@ -50,49 +50,56 @@ export const ComboBox: React.FC = () => {
   };
 
   return (
-    <div className="relative w-64">
-      <input
-        ref={inputRef}
-        type="text"
-        value={inputValue}
-        onFocus={() => setIsOpen(true)}
-        onBlur={() => setTimeout(() => setIsOpen(false), 100)}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        aria-expanded={isOpen}
-        aria-controls="combo-options"
-        aria-activedescendant={
-          highlightedIndex >= 0 ? `option-${highlightedIndex}` : undefined
-        }
-        className="w-full border border-gray-300 px-3 py-2 rounded"
-      />
-      {isOpen && (
-        <ul
-          id="combo-options"
-          role="listbox"
-          ref={listRef}
-          className="absolute mt-1 w-full border border-gray-300 rounded bg-white max-h-40 overflow-auto z-10"
-        >
-          {filteredOptions.length === 0 ? (
-            <li className="px-3 py-2 text-gray-500">No results</li>
-          ) : (
-            filteredOptions.map((option, index) => (
-              <li
-                key={option}
-                id={`option-${index}`}
-                role="option"
-                aria-selected={highlightedIndex === index}
-                className={`px-3 py-2 cursor-pointer ${
-                  highlightedIndex === index ? 'bg-blue-500 text-white' : ''
-                }`}
-                onMouseDown={() => handleOptionClick(option)}
-              >
-                {option}
-              </li>
-            ))
-          )}
-        </ul>
-      )}
+<div style={{display:"flex",justifyContent:"center",alignItems:"center" }}>
+
+<div className="flex items-center justify-center h-screen bg-gray-50">
+      <div className="relative w-64">
+        <input
+          ref={inputRef}
+          type="text"
+          value={inputValue}
+          onFocus={() => setIsOpen(true)}
+          onBlur={() => setTimeout(() => setIsOpen(false), 100)}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          aria-expanded={isOpen}
+          aria-controls="combo-options"
+          aria-activedescendant={
+            highlightedIndex >= 0 ? `option-${highlightedIndex}` : undefined
+          }
+          className="w-full border border-gray-300 px-3 py-2 rounded"
+        />
+        {isOpen && (
+          <ul
+            id="combo-options"
+            role="listbox"
+            ref={listRef}
+            className="absolute mt-1 w-full border border-gray-300 rounded bg-white max-h-40 overflow-auto z-10"
+          >
+            {filteredOptions.length === 0 ? (
+              <li className="px-3 py-2 text-gray-500">No results</li>
+            ) : (
+              filteredOptions.map((option, index) => (
+                <li
+                  key={option}
+                  id={`option-${index}`}
+                  role="option"
+                  aria-selected={highlightedIndex === index}
+                  className={`px-3 py-2 cursor-pointer ${
+                    highlightedIndex === index ? 'bg-blue-500 text-white' : ''
+                  }`}
+                  onMouseDown={() => handleOptionClick(option)}
+                >
+                  {option}
+                </li>
+              ))
+            )}
+          </ul>
+        )}
+      </div>
     </div>
+</div>
+   
   );
+  
 };
